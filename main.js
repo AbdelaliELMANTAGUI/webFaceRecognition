@@ -39,9 +39,9 @@ video.addEventListener('play',()=>{
     canvas.style.left = video.getBoundingClientRect().x+'px';
     canvas.style.top = video.getBoundingClientRect().y+'px';
     //faceapi.draw.drawDetections(canvas,resizedDetections);
-    console.log(labeledFaceDescriptors.length);
+    //console.log(labeledFaceDescriptors.length);
     if(labeledFaceDescriptors.length){
-        console.log('draw landmarks.');
+        //console.log('draw landmarks.');
       const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, maxDescriptorDistance)
       const fullFaceDescriptions = await faceapi.detectAllFaces(video).withFaceLandmarks().withFaceDescriptors()
       const results = fullFaceDescriptions.map(fd => faceMatcher.findBestMatch(fd.descriptor))
@@ -87,7 +87,6 @@ button.addEventListener('click',async ()=>{
       if (!fullFaceDescription) {
         throw new Error(`no faces detected for ${label}`)
       }
-
       const faceDescriptors = [fullFaceDescription.descriptor]
       const faceLabel =  new faceapi.LabeledFaceDescriptors(label, faceDescriptors)
       labeledFaceDescriptors.push(faceLabel);
